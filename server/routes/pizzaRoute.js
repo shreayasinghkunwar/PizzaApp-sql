@@ -4,14 +4,6 @@ const { knex } = require('../config/db/index')
 
 const PIZZA_TABLE_NAME = "pizzas";
 
-router.get('/getAllPizzas', async (req, res) => {
-    try {
-        const pizzas = await pizzaModel.find({})
-        res.send(pizzas)
-    } catch (error) {
-        res.json({ message: error })
-    }
-});
 
 router.post('/addPizza', async (req, res) => {
     const pizza = req.body
@@ -29,6 +21,8 @@ router.post('/addPizza', async (req, res) => {
             .returning("*");
 
         console.log('inserted', insertedPizza);
+        console.log('prices', insertedPizza[0].prices[0].medium);
+        console.log('varis', insertedPizza[0].varients[1]);
 
         res.status(201).send('New Pizza added')
 
@@ -36,5 +30,21 @@ router.post('/addPizza', async (req, res) => {
         res.json({ message: error })
     }
 });
+
+router.get('/getAllPizzas', async (req, res) => {
+    console.log('hi')
+    try {
+        console.log('hi')
+        const pizzas = await knex('pizzas')
+            .select(`${PIZZA_TABLE_NAME}.*`)
+
+        console.log('got', pizzas);
+        res.status(200).send(pizzas);
+
+    } catch (error) {
+        res.status(404).json({ message: error.stack });
+    }
+
+})
 
 module.exports = router;

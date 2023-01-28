@@ -7,7 +7,8 @@ exports.up = function (knex) {
         table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
         table.string('name').notNullable();
         table.specificType('varients', 'text[]');
-        table.string('prices').defaultTo([]);
+        table.specificType('prices', 'json[]');
+
 
         table.string('category').notNullable();
         table.string('image').notNullable();

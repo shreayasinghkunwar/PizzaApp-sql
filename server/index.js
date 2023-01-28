@@ -9,6 +9,7 @@ dotenv.config();
 
 app.use("/api/users", require('./routes/userRoute'));
 app.use('/api/pizzas', require('./routes/pizzaRoute'));
+app.use("/api/orders", require("./routes/orderRoute"))
 
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log(`Listening to port: ${process.env.PORT}`);
