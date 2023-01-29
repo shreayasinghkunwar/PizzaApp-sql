@@ -1,0 +1,22 @@
+.navbar{
+  background-color: rgb(10 16 1 / 85%)  !important;
+}
+
+
+.navbar-nav{
+  margin-right: 2rem;
+
+}
+
+.nav-item{
+  padding: 2.5px;
+  margin: 0 5px 0 5px;
+  font-size: 20px;
+  font-weight: 400;
+  
+}
+
+.nav-link{
+  color:  #e3dbc0a8    !important;
+
+}
