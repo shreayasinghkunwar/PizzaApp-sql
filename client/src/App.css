@@ -49,3 +49,15 @@ body{
   margin-bottom: 150px;
   opacity: 1 !important;
 }
+
+.divider-container{
+  width: "40%";
+   margin: "auto" 
+}
+
+@media screen and (min-width: 600px) {
+  .divider-container{
+    width: "30%";
+   
+  }
+}

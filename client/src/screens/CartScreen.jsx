@@ -14,7 +14,7 @@ const CartScreen = () => {
     return (
         <>
             <div class="container mt-2 pt-5">
-                <div class="row">
+                <div class="row" style={{ marginTop: "6rem" }}>
                     <div
                         class="col-12 col-lg-8 col-md-8 col-sm-12"
                         style={{ backgroundColor: "#d3dd9deb" }}
