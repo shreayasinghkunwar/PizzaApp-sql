@@ -4,9 +4,6 @@ const { knex } = require('../config/db/index')
 
 const PIZZA_TABLE_NAME = "orders";
 
-
-
-
 router.post('/placeorder', async (req, res) => {
     //  const { checkoutInfo, user, cartItems } = req.body;
     //  console.log('i am user', user[0]);
@@ -41,4 +38,20 @@ router.post('/placeorder', async (req, res) => {
         })
     }
 })
+
+router.get("/alluserorder", async (req, res) => {
+    const { userid } = req.body;
+    try {
+        const orders = await knex('orders')
+            .select(`${PIZZA_TABLE_NAME}.*`)
+        res.status(200).send(orders);
+    } catch (error) {
+        res.status(400).json({
+            message: "Something went wrong",
+            error: error.stack,
+        })
+    }
+})
+
+
 module.exports = router;

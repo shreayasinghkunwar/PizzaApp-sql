@@ -7,7 +7,7 @@ export const placeOrder = (checkoutInfo) => async (dispatch, getState) => {
     const cartItems = getState().cartReducer.cartItems
     try {
 
-        const response = await axios.post('http://localhost:4000/api/orders/placeorder', { checkoutInfo, user, cartItems });
+        const response = await axios.post('http://localhost:5000/api/orders/placeorder', { checkoutInfo, user, cartItems });
         dispatch({ type: 'PLACE_ORDER_SUCCESS' });
         alert('Order has been placed.');
 
@@ -28,7 +28,7 @@ export const getUserOrders = () => async (dispatch, getState) => {
     })
     try {
         console.log('order', userid)
-        const response = await axios.post('http://localhost:4000/api/orders/getuserorder',
+        const response = await axios.post('http://localhost:5000/api/orders/getuserorder',
             { userid: userid });
         console.log(response)
         dispatch({ type: 'USER_ORDER_SUCCESS', payload: response.data })
@@ -44,7 +44,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
         type: 'ALL_ORDER_REQUEST'
     })
     try {
-        const response = await axios.get('http://localhost:4000/api/orders/alluserorder');
+        const response = await axios.get('http://localhost:5000/api/orders/alluserorder');
         dispatch({ type: 'ALL_ORDER_SUCCESS', payload: response.data })
 
     } catch (error) {

@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import SideBar from "../../screens/admin/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserOrders } from "../../actions/orderAction";
+import { getAllOrders } from "../../actions/orderAction";
 
 const AllOrder = () => {
   const allOrderState = useSelector((state) => state.getUserOrdersReducer);
   const { loading, orders, error } = allOrderState;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserOrders);
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
