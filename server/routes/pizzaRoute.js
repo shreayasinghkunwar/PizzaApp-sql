@@ -10,6 +10,7 @@ router.post('/addPizza', async (req, res) => {
     console.log("body", pizza);
 
     try {
+        console.log('json data', JSON.stringify(pizza.prices))
         const insertedPizza = await knex('pizzas')
             .insert({
                 name: pizza.name,

@@ -37,7 +37,7 @@ const AddPizza = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
       {loading && <Loader />}
       {error && <Error error="add new pizza error" />}
       {success && <Success success="pizza added successfully" />}

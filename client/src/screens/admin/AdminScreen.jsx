@@ -12,7 +12,7 @@ const AdminScreen = () => {
     }, [])
     return (
 
-        <>
+        <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
             <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }} >
 
                 <h3 className='text-center bg-dark text-light   p-2 ' style={{ width: "100%", margin: "auto" }}>Admin Panel</h3>
@@ -25,7 +25,7 @@ const AdminScreen = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

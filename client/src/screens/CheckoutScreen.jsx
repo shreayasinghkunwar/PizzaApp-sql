@@ -35,7 +35,7 @@ const CheckoutScreen = () => {
                 <div class="row" style={{ marginTop: "5rem" }} id="cart-container">
                     <div
                         class="col-12 col-lg-8 col-md-8 col-sm-12"
-                        style={{ backgroundColor: "#d3dd9deb" }}
+                        style={{ backgroundColor: "rgb(178 185 143 / 32%)" }}
                     >
                         <h2 style={{ color: "rgb(66 60 39 / 91%)" }}>Cart Items</h2>
                         <div class="row  mt-3">
@@ -52,11 +52,11 @@ const CheckoutScreen = () => {
                         class="col-12 col-lg-4 col-md-4 col-sm-12 "
                         style={{ backgroundColor: "#d3dd9deb" }}
                     >
-                        <h2 style={{ color: "rgb(66 60 39 / 91%)" }}>Payment Info</h2>
-                        <h5>Sub Total: &nbsp;RS. {subTotal}/-</h5>
+                        <h2 style={{ color: "rgb(37 40 18 / 82%)" }}>Payment Info</h2>
+                        <h5 style={{ color: "#362905" }}>Sub Total: &nbsp;RS. {subTotal}/-</h5>
                         <h5></h5>
                         <div>
-                            <form style={{ border: "solid 1px grey", borderRadius: '5px', marginTop: "20px", padding: "15px" }}>
+                            <form style={{ border: "solid 1px #cbbaba", borderRadius: '5px', marginTop: "20px", padding: "15px" }}>
 
                                 <div class="mb-3">
                                     <label class="form-label">Phone number</label>

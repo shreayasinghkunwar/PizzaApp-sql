@@ -58,7 +58,7 @@ const EditPizza = () => {
     dispatch(updatePizza(updatedPizza));
   };
   return (
-    <>
+    <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
       {updateloading && <Loader />}
       {error && <Error error="updating pizza fail" />}
       <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
@@ -71,6 +71,7 @@ const EditPizza = () => {
 
         <div class="row mt-1">
           <SideBar />
+          {console.log("hiiii", name, category)}
           <div class="col-8 col-lg-8 col-md-8 col-sm-12">
             <form class="row g-3" onSubmit={submitForm}>
               <div class="col-12">
@@ -162,7 +163,7 @@ const EditPizza = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
