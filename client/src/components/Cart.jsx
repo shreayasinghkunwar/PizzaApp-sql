@@ -1,14 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { HiMinusCircle, HiPlusCircle, HiTrash } from "react-icons/hi";
-const dispatch = useDispatch();
 
-const Cart = ({ item, sn, addToCart, deleteFromCart }) => {
+import { addToCart, deleteFromCart } from "../actions/cartAction";
+
+
+const Cart = ({ item, index }) => {
+    const dispatch = useDispatch();
+    const cartState = useSelector((state) => state.cartReducer);
+    const cartItems = cartState.cartItems;
+
     return (
         <>
-            <div>
+            <div class="col-6 col-lg-6 col-md-6 col-sm-6 mt-2">
                 <h6>
-                    {sn + 1}.&nbsp;{item.name} [{item.varient}]
+                    {index + 1}.&nbsp;{item.name} [{item.varient}]
                 </h6>
                 <h6>
                     {" "}
@@ -57,6 +63,7 @@ const Cart = ({ item, sn, addToCart, deleteFromCart }) => {
                     }}
                 />
             </div>
+            <hr />
         </>
 
     )

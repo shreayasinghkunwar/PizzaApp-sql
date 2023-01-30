@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartAction";
+import "./css/pizza.css";
 
 const Pizza = ({ pizza }) => {
   const [varient, setVarient] = useState("small");
@@ -17,7 +18,7 @@ const Pizza = ({ pizza }) => {
   const handleShow = () => setshow(true);
   return (
     <>
-      <div class="card" style={{ width: "18rem", marginTop: "30px", margin: "auto" }}>
+      <div class="card" style={{ width: "18rem", marginTop: "30px", margin: "auto", backgroundColor: "#68683e1f" }}>
         <img
           src={pizza.image}
           class="card-img-top"

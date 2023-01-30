@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../actions/orderAction";
 import Loader from '../components/Loader';
 import Error from '../components/Error';
+import "./css/cartscreen.css"
 
 
 const CheckoutScreen = () => {
@@ -31,7 +32,7 @@ const CheckoutScreen = () => {
 
         <div  >
             <div class="container mt-2 pt-5">
-                <div class="row">
+                <div class="row" style={{ marginTop: "5rem" }} id="cart-container">
                     <div
                         class="col-12 col-lg-8 col-md-8 col-sm-12"
                         style={{ backgroundColor: "#d3dd9deb" }}
@@ -52,8 +53,8 @@ const CheckoutScreen = () => {
                         style={{ backgroundColor: "#d3dd9deb" }}
                     >
                         <h2 style={{ color: "rgb(66 60 39 / 91%)" }}>Payment Info</h2>
-                        <h5>Sub Total</h5>
-                        <h5>RS: {subTotal}/-</h5>
+                        <h5>Sub Total: &nbsp;RS. {subTotal}/-</h5>
+                        <h5></h5>
                         <div>
                             <form style={{ border: "solid 1px grey", borderRadius: '5px', marginTop: "20px", padding: "15px" }}>
 

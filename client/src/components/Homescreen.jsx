@@ -42,9 +42,10 @@ const Homescreen = () => {
         ) : error ? (
           <Error error="Error while loading" />
         ) : (
-          <div class="row mt-5" style={{ padding: "5px", margin: "auto" }}>
+          <div class="row mt-5" style={{ padding: "5px", margin: "auto", marginBottom: "10rem" }}>
+            <div style={{ textAlign: "center" }}><h3>Available Pizzas</h3></div>
             {pizzas.map((pizza) => (
-              <div class="col-12 col-md-6 col-lg-4 col-sm-6 mt-2">
+              <div class="col-12 col-md-6 col-lg-4 col-sm-6 mt-4">
                 <Pizza pizza={pizza} />
               </div>
             ))}
