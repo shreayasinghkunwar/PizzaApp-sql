@@ -27,7 +27,7 @@ const Checkout = ({ item, sn, addToCart, deleteFromCart }) => {
                 <img
                     alt={item.name}
                     src={item.image}
-                    style={{ width: "80%", height: "80%", textAlign: "left" }}
+                    style={{ width: "80%", height: "90%", textAlign: "left" }}
                 />
 
             </div>

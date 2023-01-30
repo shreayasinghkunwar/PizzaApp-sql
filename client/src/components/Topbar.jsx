@@ -56,9 +56,7 @@ const Topbar = () => {
                 <>
                   {!currentUser.user[0].isAdmin ? (
                     <>
-                      <li class="nav-item">
-                        <Link class="nav-link">{currentUser.user[0].name}</Link>
-                      </li>
+
                       <li class="nav-item">
                         <Link to="/orders" class="nav-link">
                           My order

@@ -6,6 +6,7 @@ import Pizza from "../components/Pizza";
 import Loader from "./Loader";
 import Error from "./Error";
 import "../App.css"
+import Carousel from "../screens/Carousel";
 
 const Homescreen = () => {
   const dispatch = useDispatch();
@@ -21,56 +22,30 @@ const Homescreen = () => {
 
 
 
+      <Carousel />
 
-      <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-
-        </div>
-        <div class="carousel-inner mt-5">
-          <div class="carousel-item active " >
-            <img src={"https://cdn.dribbble.com/users/8300847/screenshots/15967671/untitled-1_4x.jpg"}
-              class="d-block w-100 h-100 opacity-3" alt="pic" />
-
-            <div class="carousel-caption ">
-
-            </div>
-          </div>
-          <div class="carousel-item">
-
-            <img src={"https://static.picmaker.com/scene-prebuilts/thumbnails/FA-0009.png"}
-              class="d-block w-100 h-100 opacity-3" alt="pic" />
-
-            <div class="carousel-caption ">
-
-
-            </div>
-          </div>
-
-
-
-
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
       <div class="container">
-
+        <div class="row " id="divider-container" style={{ width: "40%", margin: "auto" }}  >
+          <div class="col-lg-4 col-4 col-md-4 col-sm-4">
+            <div id="divider" style={{ width: "100%", height: "2px", marginTop: "2rem", backgroundColor: "#e9b466" }}></div>
+          </div>
+          <div class="col-lg-4 col-4 col-md-4 col-sm-4" style={{ textAlign: "center" }}>
+            <img style={{ width: "70px", height: "70px", borderRadius: "15rem" }}
+              src={"https://thumbs.dreamstime.com/b/restaurant-logo-fork-spoon-gold-86311909.jpg"} />
+          </div>
+          <div class="col-lg-4 col-4 col-md-4 col-sm-4">
+            <div id="divider" style={{ width: "100%", marginTop: "2rem", height: "2px", backgroundColor: "#e9b466" }}></div>
+          </div>
+        </div>
         {loading ? (
           <Loader />
         ) : error ? (
           <Error error="Error while loading" />
         ) : (
-          <div class="row mt-5" style={{ padding: "5px", margin: "auto" }}>
+          <div class="row mt-5" style={{ padding: "5px", margin: "auto", marginBottom: "10rem" }}>
+            <div style={{ textAlign: "center" }}><h3>Available Pizzas</h3></div>
             {pizzas.map((pizza) => (
-              <div class="col-12 col-md-6 col-lg-3 col-sm-6">
+              <div class="col-12 col-md-6 col-lg-4 col-sm-6 mt-4">
                 <Pizza pizza={pizza} />
               </div>
             ))}

@@ -5,6 +5,8 @@ import "./css/order.css";
 
 const OrderScreen = () => {
   const orderState = useSelector((state) => state.getUserOrdersReducer);
+  const userState = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = userState;
   const { orders } = orderState;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -12,22 +14,30 @@ const OrderScreen = () => {
   }, [dispatch]);
   return (
     <div>
-      <div class="container mt-4">
-        <div style={{ width: "50%", margin: "auto", textAlign: "center" }}>
+      <div class="container mt-5">
+        <div
+          style={{
+            width: "50%",
+            margin: "auto",
+            textAlign: "center",
+            marginTop: "6rem",
+          }}
+        >
           <img
             src={
               "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2021/FAQ/img/Self-Help-Landing-Page-info-My-order.png"
             }
-            style={{ width: "25%", height: "20%", borderRadius: "5rem" }}
-            alt=""
+            style={{ width: "20%", height: "15%", borderRadius: "5rem" }}
           />
+          <br /> <h3>Welcome &nbsp;{currentUser.user[0].name}</h3>
         </div>
         {orders &&
           orders.map((order) => (
             <div>
-              <div class="row mt-2 p-1" id="order-container">
-                <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12">
+              <div class="row mt-4 p-1" id="order-container">
+                <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
                   <h4 className="heading"> Order Items</h4>
+                  <hr />
 
                   {order.orderitems.map((item) => (
                     <div>
@@ -49,13 +59,14 @@ const OrderScreen = () => {
                 </div>
                 <div class="col-12 col-lg-6 col-xl-6 col-md-6 col-sm-12 mt-2">
                   <h4 className="heading">Delivery Detail</h4>
+                  <hr />
                   <h6>Delivery address:&nbsp; {order.shippingAddress}</h6>
                   <h6>Phone number: &nbsp; {order.phoneNumber}</h6>
                   <h6>Message: &nbsp;{order.message}</h6>
                   <h6>Delivery Status: &nbsp;{order.isDelivered}</h6>
                   <br></br>
-                  <br></br>
                   <h4 className="heading">Payment Detail</h4>
+                  <hr></hr>
                   <h6>Total Amount:&nbsp;Rs. {order.orderAmount}</h6>
                   <h6>
                     Payment Status: &nbsp;{" "}
