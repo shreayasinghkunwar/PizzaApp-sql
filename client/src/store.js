@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+// import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { getAllPizzaReducer, addPizzaReducer, getPizzaByIDReducer, updatePizzaByIDReducer } from './reducers/pizzaReducer'
 import { cartReducer } from "./reducers/cartReducer";
 import { registerUserReducer, loginUserReducer, getAllUsersReducer } from './reducers/userReducer';
-import { placeOrderReducer, getUserOrdersReducer } from './reducers/orderReducer';
+import { placeOrderReducer, getUserOrdersReducer, allUserOrdersReducer } from './reducers/orderReducer';
 
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     updatePizzaByIDReducer: updatePizzaByIDReducer,
     placeOrderReducer: placeOrderReducer,
     getUserOrdersReducer: getUserOrdersReducer,
-    getAllUsersReducer: getAllUsersReducer
+    getAllUsersReducer: getAllUsersReducer,
+    allUserOrdersReducer: allUserOrdersReducer
 })
 const initialState = {
     loginUserReducer: {

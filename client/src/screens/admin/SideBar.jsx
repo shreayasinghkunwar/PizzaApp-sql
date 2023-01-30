@@ -47,6 +47,9 @@ const SideBar = () => {
 
           <button
             type="button"
+            onClick={() => {
+              navigate("/admin/orderlist");
+            }}
             class="btn btn-dark"
             style={{ border: "1px solid grey", borderRadius: "0px" }}
           >

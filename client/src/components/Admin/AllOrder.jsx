@@ -2,14 +2,16 @@ import React, { useEffect } from "react";
 import SideBar from "../../screens/admin/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserOrders } from "../../actions/orderAction";
+import { getAllOrders } from "../../actions/orderAction";
+import Loader from "./../Loader";
+import Error from "./../Error";
 
 const AllOrder = () => {
-  const allOrderState = useSelector((state) => state.getUserOrdersReducer);
-  const { loading, orders, error } = allOrderState;
+  const allOrdersState = useSelector((state) => state.allUserOrdersReducer);
+  const { loading, orders, error } = allOrdersState;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserOrders);
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
@@ -24,35 +26,48 @@ const AllOrder = () => {
 
         <div class="row mt-1">
           <SideBar />
+          {loading && <Loader />}
+          {error && <Error error="Admin order request fail" />}
           <div class="col-9 col-lg-9 col-md-9 col-sm-9">
-            {loading ? (
-              <h1>Loading....</h1>
-            ) : error ? (
-              <h1>Error while fetching pizzas</h1>
-            ) : (
-              <div
-                class="mt-2 "
-                style={{
-                  padding: "0px",
-                  margin: "auto",
-                  height: "70vh",
-                  overflow: "auto",
-                }}
-              >
-                <table class="table ">
-                  <thead>
-                    <tr>
-                      <th scope="col">Sn.</th>
-                      <th scope="col">Pizza name</th>
-                      <th>Price</th>
-                      <th scope="col">Category</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody style={{}}></tbody>
-                </table>
-              </div>
-            )}
+            <div
+              class="mt-2 "
+              style={{
+                padding: "0px",
+                margin: "auto",
+                height: "70vh",
+                overflow: "auto",
+              }}
+            >
+              <table class="table ">
+                <thead>
+                  <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Delivery Address</th>
+                    <th scope="col">Ph No.</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Delivery Status</th>
+                    <th scope="col">Paid Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders &&
+                    orders.map((order) => (
+                      <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>Rs {order.orderAmount}/-</td>
+                        <td>{order.shippingAddress}</td>
+                        <td>{order.phoneNumber}</td>
+                        <td>{order.message}</td>
+                        <td>{order.created_at.substring(0, 10)}</td>
+                        <td>{order.isDelivered}</td>
+                        <td>{order.isPaid ? "Paid" : "Not Paid"}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

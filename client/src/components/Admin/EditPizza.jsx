@@ -25,7 +25,7 @@ const EditPizza = () => {
   const { updateloading, updatesuccess, updateerror } = updatePizzaState;
   useEffect(() => {
     if (pizza) {
-      if (pizza._id === pizzaId) {
+      if (pizza.id === pizzaId) {
         setName(pizza.name);
         setDescription(pizza.description);
         setCategory(pizza.category);
@@ -44,7 +44,7 @@ const EditPizza = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const updatedPizza = {
-      _id: pizzaId,
+      id: pizzaId,
       name,
       image,
       description,

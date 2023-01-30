@@ -37,9 +37,9 @@ function App() {
             <Route path="/admin/userlist" element={< AllUsers />} />
             <Route path="/admin/pizzalist" element={< AllPizzas />} />
             <Route path="/admin/addnewpizza" element={< AddPizza />} />
-            <Route path="/admin/orderlist" element={< AllOrder />} />
             <Route path="/admin/editpizza/:pizzaId" element={< EditPizza />} />
             <Route path="/orders" element={< OrderScreen />} />
+            <Route path="/admin/orderlist" element={< AllOrder />} />
 
           </Routes>
         </BrowserRouter>

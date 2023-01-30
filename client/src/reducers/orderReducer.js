@@ -53,7 +53,6 @@ export const allUserOrdersReducer = (state = { orders: [] }, action) => {
             }
         case 'ALL_ORDER_SUCCESS':
             return {
-
                 loading: false,
                 success: true,
                 orders: action.payload
