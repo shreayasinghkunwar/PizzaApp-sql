@@ -76,8 +76,10 @@ router.post('/getuserorder', async (req, res) => {
 router.get("/alluserorder", async (req, res) => {
     const { userid } = req.body;
     try {
-        const orders = await knex('orders')
-            .select(`${PIZZA_TABLE_NAME}.*`)
+        const orders = await knex.select(`*`)
+            .from("orders")
+            .join('payment', 'orders.id', 'payment.orderid')
+
         res.status(200).send(orders);
     } catch (error) {
         res.status(400).json({

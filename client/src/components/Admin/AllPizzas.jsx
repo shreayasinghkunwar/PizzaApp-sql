@@ -62,7 +62,7 @@ const AllPizzas = () => {
                             <br />
                             Large:{pizza.prices[0]["large"]}
                           </td>
-                          <td>{pizza.name}</td>
+                          <td>{pizza.category}</td>
                           <td>
                             <Link to={`/admin/editpizza/${pizza.id}`}>
                               <i
