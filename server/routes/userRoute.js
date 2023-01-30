@@ -10,13 +10,19 @@ router.post("/register", async (req, res) => {
     const { name, email, password } = req.body
     console.log('req', req.body);
     try {
-        const insertedUser = await knex(USER_TABLE_NAME)
-            .insert({ name, email, password })
-            .returning("*");
+        const user = await knex(USER_TABLE_NAME)
+            .where({ email });
+        if (user) {
+            const insertedUser = await knex(USER_TABLE_NAME)
+                .insert({ name, email, password })
+                .returning("*");
+            console.log('inserted', insertedUser);
 
-        console.log('inserted', insertedUser);
+            res.status(200).send(insertedUser);
+        }
 
-        res.status(200).send(insertedUser);
+
+
     } catch (error) {
         res.status(400).json({
             success: false,
