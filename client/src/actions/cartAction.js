@@ -1,7 +1,7 @@
 export const addToCart = (pizza, quantity, varient) => (dispatch, getState) => {
     var cartItem = {
         name: pizza.name,
-        _id: pizza._id,
+        id: pizza.id,
         image: pizza.image,
         varient: varient,
         quantity: Number(quantity),
@@ -22,7 +22,7 @@ export const addToCart = (pizza, quantity, varient) => (dispatch, getState) => {
             dispatch({
                 type: "ADD_TO_CART", payload: {
                     name: pizza.name,
-                    _id: pizza._id,
+                    id: pizza.id,
                     image: pizza.image,
                     varient: varient,
                     quantity: Number(quantity),

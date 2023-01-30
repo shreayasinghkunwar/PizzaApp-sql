@@ -25,14 +25,14 @@ const EditPizza = () => {
   const { updateloading, updatesuccess, updateerror } = updatePizzaState;
   useEffect(() => {
     if (pizza) {
-      if (pizza.id === pizzaId) {
-        setName(pizza.name);
-        setDescription(pizza.description);
-        setCategory(pizza.category);
-        setImage(pizza.image);
-        setSmallPrice(pizza.prices[0]["small"]);
-        setMediumPrice(pizza.prices[0]["medium"]);
-        setLargePrice(pizza.prices[0]["large"]);
+      if (pizza[0].id === pizzaId) {
+        setName(pizza[0].name);
+        setDescription(pizza[0].description);
+        setCategory(pizza[0].category);
+        setImage(pizza[0].image);
+        setSmallPrice(pizza[0].prices[0]["small"]);
+        setMediumPrice(pizza[0].prices[0]["medium"]);
+        setLargePrice(pizza[0].prices[0]["large"]);
       } else {
         dispatch(getPizzaById(pizzaId));
       }
