@@ -28,6 +28,7 @@ const OrderScreen = () => {
               "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2021/FAQ/img/Self-Help-Landing-Page-info-My-order.png"
             }
             style={{ width: "20%", height: "15%", borderRadius: "5rem" }}
+            alt=""
           />
           <br /> <h3>Welcome &nbsp;{currentUser.user[0].name}</h3>
         </div>
