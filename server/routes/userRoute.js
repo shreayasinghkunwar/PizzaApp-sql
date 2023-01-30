@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { knex } = require('../config/db/index')
-
+const jwt = require('jsonwebtoken');
 const USER_TABLE_NAME = "users";
 
 router.post("/register", async (req, res) => {
@@ -21,7 +21,45 @@ router.post("/register", async (req, res) => {
             message: error
         })
     }
+});
+
+const secret = 'test'
+
+router.post('/login', async (req, res) => {
+    console.log('i am apiii', req.body)
+    const { email, password } = req.body;
+    try {
+        console.log('i am in apiii', req.body)
+        const user = await knex(USER_TABLE_NAME)
+            .where({
+                email: email,
+                password: password
+            })
+        console.log('result', user)
+
+        if (password === user[0].password) {
+            const token = jwt.sign({ username: user[0].email }, secret);
+            const currentUser = {
+                success: true,
+                token: token,
+                user,
+            }
+            console.log('token', currentUser)
+            res.status(200).send(currentUser);
+        } else {
+            res.status(400).json({
+                message: 'Login Failed'
+            })
+        }
+
+
+    } catch (error) {
+        res.status(404).json({
+            message: "Something went wrong"
+        })
+    }
 })
+
 router.get('/getallusers', async (req, res) => {
 
     try {
