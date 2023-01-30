@@ -11,6 +11,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                 }
 
             } else {
+                const nextArray = { ...state }
                 return {
                     ...state,
                     cartItems: [...state.cartItems, action.payload]

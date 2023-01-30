@@ -14,7 +14,7 @@ const Topbar = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg ">
+      <nav class=" navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container-fluid">
           <Link class="navbar-brand" href="#">
             <img
@@ -60,7 +60,7 @@ const Topbar = () => {
                         <Link class="nav-link">{currentUser.user[0].name}</Link>
                       </li>
                       <li class="nav-item">
-                        <Link to="#" class="nav-link">
+                        <Link to="/orders" class="nav-link">
                           My order
                         </Link>
                       </li>

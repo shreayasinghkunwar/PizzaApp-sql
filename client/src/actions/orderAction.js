@@ -10,7 +10,7 @@ export const placeOrder = (checkoutInfo) => async (dispatch, getState) => {
         const response = await axios.post('http://localhost:5000/api/orders/placeorder', { checkoutInfo, user, cartItems });
         dispatch({ type: 'PLACE_ORDER_SUCCESS' });
         alert('Order has been placed.');
-
+        window.location.href = "/orders";
         console.log(response)
     } catch (error) {
         dispatch({ type: 'PLACE_ORDER_FAIL' });
@@ -22,7 +22,7 @@ export const placeOrder = (checkoutInfo) => async (dispatch, getState) => {
 
 export const getUserOrders = () => async (dispatch, getState) => {
     const currentUser = getState().loginUserReducer.currentUser;
-    const userid = currentUser.user[0]._id;
+    const userid = currentUser.user[0].id;
     dispatch({
         type: 'USER_ORDER_REQUEST'
     })

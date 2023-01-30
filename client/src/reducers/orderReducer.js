@@ -25,7 +25,7 @@ export const getUserOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
         case 'USER_ORDER_REQUEST':
             return {
-                ...state,
+
                 loading: true
             }
         case 'USER_ORDER_SUCCESS':

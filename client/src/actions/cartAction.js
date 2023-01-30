@@ -19,12 +19,24 @@ export const addToCart = (pizza, quantity, varient) => (dispatch, getState) => {
             )
         } else {
 
-            dispatch({ type: "ADD_TO_CART", payload: cartItem });
-            console.log(cartItem)
+            dispatch({
+                type: "ADD_TO_CART", payload: {
+                    name: pizza.name,
+                    _id: pizza._id,
+                    image: pizza.image,
+                    varient: varient,
+                    quantity: Number(quantity),
+                    prices: pizza.prices,
+                    pizza: pizza.prices[0][varient] * quantity,
+                }
+            });
+            console.log('cartitem', cartItem);
             localStorage.setItem(
                 'cartItems',
                 JSON.stringify(getState().cartReducer.cartItems)
+
             );
+            console.log('cartitems', JSON.stringify(getState().cartReducer.cartItems));
         }
     }
 };
