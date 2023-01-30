@@ -15,8 +15,8 @@ const AllOrder = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
+    <div style={{ marginTop: "5rem", marginBottom: "5rem" }}>
+      <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }} >
         <h3
           className="text-center bg-dark text-light   p-2 "
           style={{ width: "100%", margin: "auto" }}
@@ -71,7 +71,7 @@ const AllOrder = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

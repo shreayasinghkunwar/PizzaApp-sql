@@ -15,8 +15,8 @@ const AllPizzas = () => {
     dispatch(getAllPizzas());
   }, [dispatch]);
   return (
-    <>
-      <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
+    <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
+      <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c", marginTop: "8rem", marginBottom: "5rem" }}>
         <h3
           className="text-center bg-dark text-light   p-2 "
           style={{ width: "100%", margin: "auto" }}
@@ -88,7 +88,7 @@ const AllPizzas = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

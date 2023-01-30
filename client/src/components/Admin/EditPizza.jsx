@@ -25,14 +25,15 @@ const EditPizza = () => {
   const { updateloading, updatesuccess, updateerror } = updatePizzaState;
   useEffect(() => {
     if (pizza) {
-      if (pizza.id === pizzaId) {
-        setName(pizza.name);
-        setDescription(pizza.description);
-        setCategory(pizza.category);
-        setImage(pizza.image);
-        setSmallPrice(pizza.prices[0]["small"]);
-        setMediumPrice(pizza.prices[0]["medium"]);
-        setLargePrice(pizza.prices[0]["large"]);
+      if (pizza[0].id === pizzaId) {
+        setName(pizza[0].name);
+        setDescription(pizza[0].description);
+        setCategory(pizza[0].category);
+        setImage(pizza[0].image);
+        setSmallPrice(pizza[0].prices[0]["small"]);
+        setMediumPrice(pizza[0].prices[0]["medium"]);
+        setLargePrice(pizza[0].prices[0]["large"]);
+
       } else {
         dispatch(getPizzaById(pizzaId));
       }
@@ -40,6 +41,7 @@ const EditPizza = () => {
       dispatch(getPizzaById(pizzaId));
     }
   }, [pizza, dispatch]);
+
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -58,7 +60,7 @@ const EditPizza = () => {
     dispatch(updatePizza(updatedPizza));
   };
   return (
-    <>
+    <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
       {updateloading && <Loader />}
       {error && <Error error="updating pizza fail" />}
       <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
@@ -70,7 +72,7 @@ const EditPizza = () => {
         </h3>
 
         <div class="row mt-1">
-          <SideBar />
+          <SideBar />{console.log('hiiii', name, category)}
           <div class="col-8 col-lg-8 col-md-8 col-sm-12">
             <form class="row g-3" onSubmit={submitForm}>
               <div class="col-12">
@@ -162,7 +164,7 @@ const EditPizza = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

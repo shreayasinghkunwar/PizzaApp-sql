@@ -12,7 +12,7 @@ const AllUsers = () => {
     dispatch(getAllUsers());
   }, []);
   return (
-    <>
+    <div style={{ marginTop: "6rem", marginBottom: "5rem" }}>
       <div class="container mt-3 p-0" style={{ backgroundColor: "#8bc34a1c" }}>
         <h3
           className="text-center bg-dark text-light   p-2 "
@@ -58,7 +58,7 @@ const AllUsers = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
