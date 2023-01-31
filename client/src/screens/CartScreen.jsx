@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "./css/cartscreen.css"
 import Cart from "../components/Cart";
+import { Link } from "react-router-dom";
 const CartScreen = () => {
     const cartState = useSelector((state) => state.cartReducer);
     const cartItems = cartState.cartItems;
+    const userState = useSelector((state) => state.loginUserReducer);
+    const { currentUser } = userState;
 
     const subTotal = cartItems.reduce((x, item) => {
         return x + item.quantity * item.prices[0][item.varient];
@@ -40,15 +43,22 @@ const CartScreen = () => {
                     >
                         <h3 style={{ color: "rgb(67 74 68)" }}>Payment Info</h3>
                         <h4 style={{ color: "564833", marginTop: "1.5rem" }}>Sub Total: &nbsp;RS: {subTotal}/-</h4>
-
-                        <div style={{ textAlign: "center" }}>      <button
+                        {currentUser ? (<div style={{ textAlign: "center" }}>      <button
                             type="button"
                             style={{ width: "100px", fontSize: "13px", fontWeight: "500", marginTop: "1rem" }}
                             class="btn btn-warning"
                             onClick={() => window.location.href = "/checkout"}
                         >
                             Checkout
-                        </button></div>
+                        </button></div>) : (<><Link to="/login"><div style={{ textAlign: "center" }}>      <button
+                            type="button"
+                            style={{ width: "100px", fontSize: "13px", fontWeight: "500", marginTop: "1rem" }}
+                            class="btn btn-warning"
+
+                        >
+                            Login
+                        </button></div></Link></>)}
+
                         <div></div>
                     </div>
                 </div>
