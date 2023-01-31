@@ -64,6 +64,15 @@ This project also has admin dashboard where super admin can add pizza ,edit ,del
  
  - Run : npm run dev
  
+ ## List of figures
+ 
+ ### Usecase Diagram 
+![Usecase drawio](https://user-images.githubusercontent.com/111348849/215701987-f4b57534-2ba1-4a6c-97dd-d6cf8bdaf7d4.png)
+ 
+ ### ER Diagram
+ ![er diagram drawio (1)](https://user-images.githubusercontent.com/111348849/215701120-2ee5e769-9a54-4557-9f00-d5febe091f5f.png)
+
+ 
  
  
  ### Project Links
