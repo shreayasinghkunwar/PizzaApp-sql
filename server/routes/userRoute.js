@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken')
 
 const USER_TABLE_NAME = "users";
 
+
+
 router.post("/register", async (req, res) => {
     const { name, email, password } = req.body
     console.log('req', req.body);
@@ -20,9 +22,6 @@ router.post("/register", async (req, res) => {
 
             res.status(200).send(insertedUser);
         }
-
-
-
     } catch (error) {
         res.status(400).json({
             success: false,
