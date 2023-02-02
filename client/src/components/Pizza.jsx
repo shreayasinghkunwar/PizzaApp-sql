@@ -18,7 +18,7 @@ const Pizza = ({ pizza }) => {
   const handleShow = () => setshow(true);
   return (
     <>
-      <div class="card" style={{ width: "18rem", marginTop: "30px", margin: "auto", backgroundColor: "#68683e1f" }}>
+      <div class="card" style={{  }}>
         <img
           src={pizza.image}
           class="card-img-top"
