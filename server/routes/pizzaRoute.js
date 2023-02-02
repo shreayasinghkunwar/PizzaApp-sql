@@ -10,7 +10,7 @@ router.post('/addPizza', async (req, res) => {
     console.log("body", pizza);
 
     try {
-        console.log('json data', JSON.stringify(pizza.prices))
+
         const insertedPizza = await knex('pizzas')
             .insert({
                 name: pizza.name,
@@ -26,7 +26,7 @@ router.post('/addPizza', async (req, res) => {
         console.log('prices', insertedPizza[0].prices[0].medium);
         console.log('varis', insertedPizza[0].varients[1]);
 
-        res.status(201).send('New Pizza added')
+        res.status(201).json(insertedPizza);
 
     } catch (error) {
         res.json({ message: error })
@@ -41,7 +41,7 @@ router.get('/getAllPizzas', async (req, res) => {
             .select(`${PIZZA_TABLE_NAME}.*`)
 
         // console.log('got', pizzas);
-        res.status(200).send(pizzas);
+        res.status(201).send(pizzas);
 
     } catch (error) {
         res.status(404).json({ message: error.stack });

@@ -3,10 +3,14 @@ import React from "react";
 const Contactus = () => {
   return (
     <>
-      <div className="view-container mt-5">
-        <div calss="row" style={{ width: "45%", margin: "auto" }}>
-          <div class="col-12 md-12 col-lg-12">
-            <table class="table">
+      <div className="view-container mt-5" >
+        <div class="row" style={{ margin: "auto", marginTop: "10rem", width: "80%" }}>
+          <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+            <img src={"https://img.restaurantguru.com/r395-Camion-PIZZA-MANIA-advertisement.jpg"}
+              style={{ width: "100%", height: "300px", borderRadius: "7rem" }} />
+          </div>
+          <div class="col-8 col-md-8 col-sm-8 col-lg-8 ">
+            <table class="table" style={{ width: "80%", margin: "auto", marginTop: "5rem" }}>
               <thead>
                 <tr>
                   <th
@@ -14,11 +18,11 @@ const Contactus = () => {
                     scope="cols"
                     style={{
                       textAlign: "center",
-                      backgroundColor: "#ffe710",
+                      backgroundColor: "rgb(211 202 122 / 60%)",
                       fontSize: "20px",
                     }}
                   >
-                    Contact Details
+                    Contact Detailsss
                   </th>
                 </tr>
               </thead>

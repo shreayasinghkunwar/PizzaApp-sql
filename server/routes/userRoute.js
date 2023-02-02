@@ -1,34 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { knex } = require('../config/db/index')
+const { knex } = require('../config/db/index');
+const { registerUser } = require("../controllers/userController");
 
 const jwt = require('jsonwebtoken')
 
 const USER_TABLE_NAME = "users";
 
-
-
-router.post("/register", async (req, res) => {
-    const { name, email, password } = req.body
-    console.log('req', req.body);
-    try {
-        const user = await knex(USER_TABLE_NAME)
-            .where({ email });
-        if (user) {
-            const insertedUser = await knex(USER_TABLE_NAME)
-                .insert({ name, email, password })
-                .returning("*");
-            console.log('inserted', insertedUser);
-
-            res.status(200).send(insertedUser);
-        }
-    } catch (error) {
-        res.status(400).json({
-            success: false,
-            message: error
-        })
-    }
-});
+router.post("/register", registerUser);
 
 const secret = "test"
 

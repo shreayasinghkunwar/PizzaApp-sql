@@ -8,10 +8,11 @@ export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 
 
 
+
 export const registerUser = (user) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST })
     try {
-        const res = await axios.post("http://localhost:5000/api/users/register", user);
+        const res = await axios.post("https://pizza-mania-server.onrender.com/api/users/register", user);
         dispatch({ type: USER_REGISTER_SUCCESS });
         alert('Registered Successfully');
         window.location.href = "/"
@@ -27,7 +28,7 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST })
     try {
         console.log("i am action", user)
-        const response = await axios.post('http://localhost:5000/api/users/login', user);
+        const response = await axios.post('https://pizza-mania-server.onrender.com/api/users/login', user);
         console.log(response)
         dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
         localStorage.setItem('currentUser', JSON.stringify(response.data))
@@ -53,7 +54,7 @@ export const logoutUser = () => dispatch => {
 export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: 'GET_USERS_REQUEST' })
     try {
-        const res = await axios.get('http://localhost:5000/api/users/getallusers')
+        const res = await axios.get('https://pizza-mania-server.onrender.com/api/users/getallusers')
         console.log(res)
         dispatch({ type: 'GET_USERS_SUCCESS', payload: res.data })
     } catch (err) {
