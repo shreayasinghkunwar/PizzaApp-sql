@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "node index.js",
-    "server": "nodemon index.js"
+    "test": "jest   --maxWorkers=1",
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
