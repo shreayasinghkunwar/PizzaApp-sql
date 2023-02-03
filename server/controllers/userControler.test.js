@@ -1,5 +1,5 @@
 const { registerUser } = require("./userController");
-const app = require("../index"); // Link to your server file
+const { server } = require("../app"); // Link to your server file
 const request = require("supertest");
 //const request = supertest(app);
 //const test = require("ava");
@@ -14,6 +14,11 @@ describe('Register user', () => {
     afterEach(async () => {
         // clearing the test user from database after every test
         await knex('users').where('email', 't7@gmail.com').del();
+        async () => {
+            await server.close(() => {
+                process.exit(1);
+            });
+        }
     })
     // jest.setTimeout(10000)
     it("returns 201 if user in inserted", async () => {
