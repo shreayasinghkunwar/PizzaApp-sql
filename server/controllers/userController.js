@@ -29,3 +29,47 @@ exports.registerUser = async (req, res) => {
         })
     }
 }
+
+const secret = "test"
+exports.userLogin = async (req, res) => {
+
+    const { email, password } = req.body;
+    try {
+        const user = await knex(USER_TABLE_NAME)
+            .where({ email, password })
+
+        if (password === user[0].password) {
+            const token = jwt.sign({ username: user[0].email }, 'test');
+            const currentUser = {
+                success: true,
+                token: token,
+                user,
+            }
+            console.log('token', currentUser)
+            res.status(200).send(currentUser);
+        } else {
+            res.status(400).json({
+                message: 'Login Failed'
+            })
+        }
+    } catch (error) {
+        res.status(404).json({
+            message: error
+        })
+
+    }
+}
+
+exports.getAllUsers = async (req, res) => {
+
+    try {
+        const Users = await knex('users')
+            .select(`${USER_TABLE_NAME}.*`)
+
+        // console.log('got', Users);
+        res.status(200).send(Users);
+    } catch (error) {
+        res.status(404).json({ message: error.stack });
+    }
+
+}
