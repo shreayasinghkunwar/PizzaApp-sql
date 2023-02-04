@@ -46,7 +46,7 @@ exports.userLogin = async (req, res) => {
                 token: token,
                 user,
             }
-            console.log('token', currentUser)
+            // console.log('token', currentUser)
             res.status(200).send(currentUser);
         } else {
             res.status(400).json({
