@@ -1,37 +1,22 @@
+
 const { insertPizza } = require("./pizzaController");
 const { server } = require("../index");
-
 const request = require("supertest");
-
 const { knex } = require('../config/db/index');
 
-afterEach(async () => {
+// importing mock data
+const { pizza, pizzas } = require("./mockData");
+beforeAll(async () => {
     async () => {
-        await server.close();
+        await server.close(() => {
+            process.exit(1);
+        });
     }
-
 })
+
+
 //  test for inserting a pizza
 describe('Insert a Pizza', () => {
-
-    // mock data
-    const pizza = {
-        name: "Chicken Golden ",
-
-        price: [
-            {
-                "small": 249,
-                "medium": 349,
-                "large": 599
-            }
-        ],
-        category: "nonveg",
-        image: "/images/chicken_golden_delight.jpg",
-        description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-
-    }
-
 
     jest.setTimeout(10000);
 
@@ -51,8 +36,6 @@ describe('Insert a Pizza', () => {
         const res = await request("localhost:5000/api/pizzas").post("/addPizza").send(pizza)
         //  console.log(res.body)
         expect(res.statusCode).toEqual(201)
-
-
     });
 
     it("Should save pizza to database", async () => {
@@ -69,44 +52,12 @@ describe('Insert a Pizza', () => {
 
 // Get all pizza
 describe('Get all pizzas', () => {
-    // mock data
-    const pizza = [{
-        name: "Chicken Golden ",
-
-        price: [
-            {
-                "small": 249,
-                "medium": 349,
-                "large": 599
-            }
-        ],
-        category: "nonveg",
-        image: "/images/chicken_golden_delight.jpg",
-        description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-
-    },
-    {
-        name: "Chicken Pizzeria ",
-        price: [
-            {
-                "small": 249,
-                "medium": 349,
-                "large": 599
-            }
-        ],
-        category: "nonveg",
-        image: "/images/chicken_golden_delight.jpg",
-        description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-
-    }]
 
 
     afterEach(async () => {
         // clearing the test pizza from database after every test
-        await knex('pizzas').where('name', pizza[0].name).del();
-        await knex('pizzas').where('name', pizza[1].name).del();
+        await knex('pizzas').where('name', pizzas[0].name).del();
+        await knex('pizzas').where('name', pizzas[1].name).del();
         async () => {
             await server.close();
         }
@@ -115,8 +66,8 @@ describe('Get all pizzas', () => {
 
     // inserting mock datas
     beforeEach(async () => {
-        const res = await request("localhost:5000/api/pizzas").post("/addPizza").send(pizza[0])
-        const res2 = await request("localhost:5000/api/pizzas").post("/addPizza").send(pizza[1])
+        const res = await request("localhost:5000/api/pizzas").post("/addPizza").send(pizzas[0])
+        const res2 = await request("localhost:5000/api/pizzas").post("/addPizza").send(pizzas[1])
     })
 
 
@@ -132,21 +83,6 @@ describe('Get all pizzas', () => {
 })
 
 describe("Update Pizza", () => {
-    // mock data
-    const pizza = {
-        name: "Chicken Golden ",
-        price: [
-            {
-                "small": 249,
-                "medium": 349,
-                "large": 599
-            }
-        ],
-        category: "nonveg",
-        image: "/images/chicken_golden_delight.jpg",
-        description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-    }
 
     afterEach(async () => {
         // clearing the test pizza from database after every test
@@ -180,7 +116,6 @@ describe("Update Pizza", () => {
         }
         // updating pizza
         const res = await request("localhost:5000/api/pizzas").post("/getpizzabyid").send(updateData)
-        console.log(res.body)
         expect(res.statusCode).toEqual(200)
     });
 })
