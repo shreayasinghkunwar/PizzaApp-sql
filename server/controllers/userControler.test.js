@@ -39,7 +39,38 @@ describe('Register user', () => {
     })
 })
 
+describe('Login User', () => {
+    const user = {
+        name: 'Ratish',
+        email: 'ratish890@gmail.com',
+        password: 'password'
+    }
+    afterEach(async () => {
+        // clearing the test user from database after every test
+        await knex('users').where('email', 'ratish890@gmail.com').del();
+        async () => {
+            await server.close(() => {
+                process.exit(1);
+            });
+        }
+    })
+    it('shoud return status code 200 for userlogin', async () => {
+        const res = await request('localhost:5000/api/users').post('/register').send(user)
+        const login = {
+            email: res.body[0].email,
+            password: res.body[0].password
+        }
+        const logUser = await request('localhost:5000/api/users').post('/login').send(login);
+        expect(logUser.statusCode).toEqual(200)
+        expect(logUser.body.success).toBe(true)
+        // console.log('logUser body', logUser.body)
+
+    })
+
+})
+
 describe('Get all users', () => {
+
     it('returns statuscode 200', async () => {
         const res = await request('localhost:5000/api/users').get('/getallusers')
         expect(res.statusCode).toEqual(200)

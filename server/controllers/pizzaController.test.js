@@ -5,7 +5,12 @@ const request = require("supertest");
 
 const { knex } = require('../config/db/index');
 
+afterEach(async () => {
+    async () => {
+        await server.close();
+    }
 
+})
 //  test for inserting a pizza
 describe('Insert a Pizza', () => {
 
@@ -64,8 +69,6 @@ describe('Insert a Pizza', () => {
 
 // Get all pizza
 describe('Get all pizzas', () => {
-
-
     // mock data
     const pizza = [{
         name: "Chicken Golden ",
@@ -85,7 +88,6 @@ describe('Get all pizzas', () => {
     },
     {
         name: "Chicken Pizzeria ",
-
         price: [
             {
                 "small": 249,
@@ -133,7 +135,6 @@ describe("Update Pizza", () => {
     // mock data
     const pizza = {
         name: "Chicken Golden ",
-
         price: [
             {
                 "small": 249,
@@ -145,7 +146,6 @@ describe("Update Pizza", () => {
         image: "/images/chicken_golden_delight.jpg",
         description:
             "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-
     }
 
     afterEach(async () => {
@@ -154,12 +154,9 @@ describe("Update Pizza", () => {
         async () => {
             await server.close();
         }
-
     })
 
-
     jest.setTimeout(10000);
-
     it("returns 200 if pizza is updated", async () => {
         jest.setTimeout(10000);
 
@@ -181,16 +178,42 @@ describe("Update Pizza", () => {
             description:
                 "Double pepper chicken, golden corn and extra cheese, true delight"
         }
-
-
-
         // updating pizza
         const res = await request("localhost:5000/api/pizzas").post("/getpizzabyid").send(updateData)
         console.log(res.body)
         expect(res.statusCode).toEqual(200)
-
-
-
     });
 })
 
+describe('Delete pizza', () => {
+    const pizza = {
+        name: "Chicken Golden Pizza ",
+        price: [
+            {
+                "small": 249,
+                "medium": 349,
+                "large": 599
+            }
+        ],
+        category: "nonveg",
+        image: "/images/chicken_golden_delight.jpg",
+        description:
+            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
+    }
+    afterEach(async () => {
+        // clearing the test pizza from database after every test
+        await knex('pizzas').where('name', "Chicken Tikki Pizza").del();
+        async () => {
+            await server.close();
+        }
+    })
+    jest.setTimeout(10000);
+    it('returns status code 200 when pizza is deleted', async () => {
+        const res = await request("localhost:5000/api/pizzas").post('/addPizza').send(pizza)
+        // console.log('response pizza', res.body[0])
+        // const delResponse = await knex('pizzas').where('id', res.body[0].id).del();
+        const delResponse = await request('localhost:5000/api/pizzas').post('/deletepizza').send({ pizzaId: res.body[0].id })
+        expect(delResponse.statusCode).toEqual(200)
+    });
+
+})

@@ -11,34 +11,34 @@ router.post("/register", registerUser);
 
 const secret = "test"
 
-router.post('/login', userLogin)
-// router.post('/login', async (req, res) => {
-//     const { email, password } = req.body;
-//     try {
-//         const user = await knex(USER_TABLE_NAME)
-//             .where({ email, password })
+// router.post('/login', userLogin)
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await knex(USER_TABLE_NAME)
+            .where({ email, password })
 
-//         if (password === user[0].password) {
-//             const token = jwt.sign({ username: user[0].email }, secret);
-//             const currentUser = {
-//                 success: true,
-//                 token: token,
-//                 user,
-//             }
-//             console.log('token', currentUser)
-//             res.status(200).send(currentUser);
-//         } else {
-//             res.status(400).json({
-//                 message: 'Login Failed'
-//             })
-//         }
-//     } catch (error) {
-//         res.status(404).json({
-//             message: error
-//         })
+        if (password === user[0].password) {
+            const token = jwt.sign({ username: user[0].email }, secret);
+            const currentUser = {
+                success: true,
+                token: token,
+                user,
+            }
+            console.log('token', currentUser)
+            res.status(200).send(currentUser);
+        } else {
+            res.status(400).json({
+                message: 'Login Failed'
+            })
+        }
+    } catch (error) {
+        res.status(404).json({
+            message: error
+        })
 
-//     }
-// })
+    }
+})
 
 router.get('/getallusers', getAllUsers)
 // router.get('/getallusers', async (req, res) => {

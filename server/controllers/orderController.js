@@ -1,16 +1,18 @@
 const express = require('express');
+const router = express.Router();
 const { knex } = require('../config/db/index');
+
 
 exports.placeOrder = async (req, res) => {
     const { checkoutInfo, user, cartItems } = req.body;
-    console.log('i am user', user[0]);
+    //console.log('i am user', user[0]);
     const User = user[0]
-    console.log('i am order', req.body)
+    //  console.log('i am order', req.body)
     try {
         const order = req.body
         const insertedOrder = await knex('orders')
             .insert({
-                userid: User.id,
+                userid: user[0].id,
                 orderitems: cartItems,
                 phoneNumber: checkoutInfo.number,
                 shippingAddress: checkoutInfo.address,
@@ -20,7 +22,7 @@ exports.placeOrder = async (req, res) => {
             })
             .returning("*");
 
-        console.log(' order inserted', insertedOrder[0].id);
+        //        console.log(' order inserted', insertedOrder[0].id);
         const orderid = insertedOrder[0].id;
         const amountPaid = insertedOrder[0].orderAmount
         const insertedPayment = await knex('payment')
@@ -31,10 +33,10 @@ exports.placeOrder = async (req, res) => {
             })
             .returning("*");
 
-        console.log('inserted', insertedOrder);
-        console.log('inserted payment', insertedPayment);
+        //  console.log('inserted', insertedOrder);
+        //console.log('inserted payment', insertedPayment);
 
-        res.status(201).json({
+        res.status(404).json({
             success: true,
             message: 'Order success',
             data: insertedOrder
@@ -43,44 +45,6 @@ exports.placeOrder = async (req, res) => {
     } catch (error) {
         res.status(404).json({
             message: "Something went wrong"
-        })
-    }
-}
-
-exports.getUserOrder = async (req, res) => {
-    console.log('succes u\order');
-    const user = req.body;
-    console.log(user.userid)
-    try {
-
-        const order = await knex.select('*')
-            .from('orders')
-            .where('orders.userid', user.userid)
-            .join('payment', 'orders.id', 'payment.orderid')
-        console.log("ordersssss", order);
-        res.status(200).send(order)
-
-
-    } catch (error) {
-        res.status(400).json({
-            message: 'Something went Wrong',
-            error: error.stack,
-        });
-    }
-}
-
-exports.getAllUserOrder = async (req, res) => {
-    const { userid } = req.body;
-    try {
-        const orders = await knex.select(`*`)
-            .from("orders")
-            .join('payment', 'orders.id', 'payment.orderid')
-
-        res.status(200).send(orders);
-    } catch (error) {
-        res.status(400).json({
-            message: "Something went wrong",
-            error: error.stack,
         })
     }
 }

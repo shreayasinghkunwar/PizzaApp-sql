@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { knex } = require('../config/db/index');
 
+const jwt = require('jsonwebtoken')
 // Register user
 const USER_TABLE_NAME = "users";
 
@@ -39,7 +40,7 @@ exports.userLogin = async (req, res) => {
             .where({ email, password })
 
         if (password === user[0].password) {
-            const token = jwt.sign({ username: user[0].email }, 'test');
+            const token = jwt.sign({ username: user[0].email }, secret);
             const currentUser = {
                 success: true,
                 token: token,

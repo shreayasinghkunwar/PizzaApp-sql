@@ -1,0 +1,48 @@
+// const { db, userConfig } = require("../jest.setup");
+// const ArtistController = require("../../modules/artist/artist.controllers");
+// const artistC = new ArtistController({ db, userConfig });
+
+// const artistToCreate = {
+//   name: "Test Artist1",
+//   description: "Test artist 1 description",
+//   profileImage: "testartist1profileimage",
+//   email: "testartist1@mail.com",
+//   walletAddress: "0x1234567890123456789012345678901234567891",
+//   collectionId: "1",
+// };
+
+// const artistToUpdate = {
+//   name: "Updated Test Artist1",
+//   description: "Updated Test artist 1 description",
+//   profileImage: "pdatedtestartist1profileimage",
+//   email: "updatedtestartist1@mail.com",
+//   walletAddress: "0x1234567890123456789012345678901234567892",
+//   collectionId: "1",
+// };
+
+// describe("Artist Controller Test Cases", () => {
+//   it("should create a new artist", async () => {
+//     const artist = await artistC.add(artistToCreate);
+//     expect(artist.name).toBe(artistToCreate.name);
+//   });
+
+//   it("should get all artists", async () => {
+//     const artists = await artistC.list({ start: 0 });
+//     expect(artists.data.length).toBeGreaterThan(0);
+//   });
+
+//   it("should get an artist by id", async () => {
+//     const artist = await artistC.getById("7");
+//     expect(artist.name).toBe(artistToCreate.name);
+//   });
+
+//   it("should find an artist by id and update", async () => {
+//     const artist = await artistC.update("5", artistToUpdate);
+//     expect(artist.name).toBe(artistToUpdate.name);
+//   });
+
+//   //   it("should find an artist by id and delete", async () => {
+//   //     const artist = await artistC.remove("1");
+//   //     expect(artist.name).toBe(artistToUpdate.name);
+//   //   });
+// });

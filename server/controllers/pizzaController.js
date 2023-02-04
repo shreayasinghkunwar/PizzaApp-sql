@@ -41,8 +41,6 @@ exports.getAllPizza = async (req, res) => {
         // console.log('hi')
         const pizzas = await knex('pizzas')
             .select(`${PIZZA_TABLE_NAME}.*`)
-
-
         res.status(200).send(pizzas);
 
     } catch (error) {
@@ -53,8 +51,7 @@ exports.getAllPizza = async (req, res) => {
 
 exports.updatePizza = async (req, res) => {
     const updatedPizza = req.body.updatedPizza;
-    console.log('hii', updatedPizza)
-
+    // console.log('hii', updatedPizza)
     // const pizza = req.body;
 
     try {
@@ -76,5 +73,18 @@ exports.updatePizza = async (req, res) => {
     } catch (err) {
         res.json({ message: err })
 
+    }
+}
+
+exports.deletePizza = async (req, res) => {
+    const pizzaId = req.body.pizzaId;
+    try {
+        const deletePizza = await knex('pizzas')
+            .where({ id: pizzaId })
+            .del();
+        res.status(200).send('pizza deleted')
+
+    } catch (err) {
+        res.json({ message: err })
     }
 }
