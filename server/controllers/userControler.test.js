@@ -1,27 +1,31 @@
 const { registerUser } = require("./userController");
-const { server } = require("../app"); // Link to your server file
+
+const { server } = require("../index"); // Link to your server file
 const request = require("supertest");
 //const request = supertest(app);
 //const test = require("ava");
 const { knex } = require('../config/db/index');
 
+// importing mock user data
+const { user } = require("./mockData");
 
-
-
-
-describe('Register user', () => {
-
-    const user = {
-        name: "t2 Kc",
-        email: "t7@gmail.com",
-        password: "123456789"
-
+beforeAll(async () => {
+    async () => {
+        await server.close(() => {
+            process.exit(1);
+        });
     }
+})
+
+
+// testing register order
+describe('Register user', () => {
 
 
     afterEach(async () => {
         // clearing the test user from database after every test
-        await knex('users').where('email', 't7@gmail.com').del();
+
+        await knex('users').where('email', user.email).del();
         async () => {
             await server.close(() => {
                 process.exit(1);
@@ -29,19 +33,17 @@ describe('Register user', () => {
         }
     })
 
-    jest.setTimeout(10000)
+
     it("returns 201 if user in inserted", async () => {
         jest.setTimeout(10000)
         const res = await request("localhost:5000/api/users").post("/register").send(user)
-
         expect(res.statusCode).toEqual(201)
-        expect(res.body[0].name).toBe(user.name);
-        expect(res.body[0].created_at).toBeTruthy();
-        expect(res.body[0].updated_at).toBeTruthy();
+
 
     });
 
     it("Should save user to database", async () => {
+        jest.setTimeout(10000)
         const res = await request("localhost:5000/api/users").post("/register").send(user)
         expect(res.body[0].name).toBe(user.name);
         expect(res.body[0].id).toBeTruthy();

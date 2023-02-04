@@ -21,11 +21,6 @@ exports.insertPizza = async (req, res) => {
                 prices: [pizza.prices]
             })
             .returning("*");
-
-        //  console.log('inserted', insertedPizza);
-        //  console.log('prices', insertedPizza[0].prices[0].medium);
-        // console.log('varis', insertedPizza[0].varients[1]);
-
         res.status(201).json(insertedPizza);
 
     } catch (error) {
@@ -36,9 +31,8 @@ exports.insertPizza = async (req, res) => {
 // get all pizzas
 
 exports.getAllPizza = async (req, res) => {
-    // console.log('hi')
     try {
-        // console.log('hi')
+
         const pizzas = await knex('pizzas')
             .select(`${PIZZA_TABLE_NAME}.*`)
 
@@ -53,9 +47,6 @@ exports.getAllPizza = async (req, res) => {
 
 exports.updatePizza = async (req, res) => {
     const updatedPizza = req.body.updatedPizza;
-    console.log('hii', updatedPizza)
-
-    // const pizza = req.body;
 
     try {
         const pizza = await knex('pizzas')
@@ -69,7 +60,6 @@ exports.updatePizza = async (req, res) => {
                 prices: [updatedPizza.prices]
             })
             .returning("*");
-        console.log(pizza)
 
         res.status(200).send(pizza);
 
