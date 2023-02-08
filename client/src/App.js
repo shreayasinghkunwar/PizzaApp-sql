@@ -24,7 +24,6 @@ function App() {
     <div className="App">
       <div className="App">
         <BrowserRouter>
-
           <Topbar />
           <Routes>
             <Route path="/admin" element={< AdminScreen />} />

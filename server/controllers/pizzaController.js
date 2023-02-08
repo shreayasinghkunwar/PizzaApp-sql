@@ -5,9 +5,14 @@ const { knex } = require('../config/db/index');
 //  Inserting a Pizza
 const PIZZA_TABLE_NAME = "pizzas";
 // 
+/**
+ * Controller to insert pizza in the database --by admin
+ * 
+ * @param {*} req - request pizza data from body
+ * @param {*} res - response by inserting pizza in the database
+ */
 exports.insertPizza = async (req, res) => {
     const pizza = req.body
-
 
     try {
 
@@ -29,14 +34,18 @@ exports.insertPizza = async (req, res) => {
 }
 
 // get all pizzas
-
+/**
+ * contorller to get all pizzas from the database
+ * 
+ * @param {*} req 
+ * @param {*} res - response with every data of pizza contained in the database
+ */
 exports.getAllPizza = async (req, res) => {
     try {
 
+        //selects every data from pizza database table
         const pizzas = await knex('pizzas')
             .select(`${PIZZA_TABLE_NAME}.*`)
-
-
         res.status(200).send(pizzas);
 
     } catch (error) {
@@ -45,8 +54,17 @@ exports.getAllPizza = async (req, res) => {
 
 }
 
+/**
+ * Contoller to update pizza inside the database
+ * 
+ * @param {*} req - request pizza id from the database to be updated
+ * @param {*} res - respose with success status code by updating pizza or error statuscode with error message
+ */
+
 exports.updatePizza = async (req, res) => {
     const updatedPizza = req.body.updatedPizza;
+    // console.log('hii', updatedPizza)
+    // const pizza = req.body;
 
     try {
         const pizza = await knex('pizzas')
@@ -66,5 +84,24 @@ exports.updatePizza = async (req, res) => {
     } catch (err) {
         res.json({ message: err })
 
+    }
+}
+
+/**
+ * Contoller to delete pizza's from database
+ * 
+ * @param {*} req - request pizza id to be deleted from the body    
+ * @param {*} res - response with sucess status code by removing the pizza from database or error status code with error message
+ */
+exports.deletePizza = async (req, res) => {
+    const pizzaId = req.body.pizzaId;
+    try {
+        const deletePizza = await knex('pizzas')
+            .where({ id: pizzaId })
+            .del();
+        res.status(200).send('pizza deleted')
+
+    } catch (err) {
+        res.json({ message: err })
     }
 }

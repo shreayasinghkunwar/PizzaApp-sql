@@ -6,9 +6,6 @@ export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 
-
-
-
 export const registerUser = (user) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST })
     try {
@@ -69,7 +66,7 @@ export const logoutUser = () => dispatch => {
 export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: 'GET_USERS_REQUEST' })
     try {
-        const res = await axios.get('https://pizza-mania-server.onrender.com/api/users/getallusers')
+        const res = await axios.get('http://localhost:5000/api/users/getallusers')
         console.log(res)
         dispatch({ type: 'GET_USERS_SUCCESS', payload: res.data })
     } catch (err) {

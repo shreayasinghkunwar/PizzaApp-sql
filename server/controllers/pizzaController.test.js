@@ -14,6 +14,7 @@ beforeAll(async () => {
     }
 })
 
+
 //  test for inserting a pizza
 describe('Insert a Pizza', () => {
 
@@ -89,12 +90,9 @@ describe("Update Pizza", () => {
         async () => {
             await server.close();
         }
-
     })
 
-
     jest.setTimeout(10000);
-
     it("returns 200 if pizza is updated", async () => {
         jest.setTimeout(10000);
 
@@ -116,15 +114,27 @@ describe("Update Pizza", () => {
             description:
                 "Double pepper chicken, golden corn and extra cheese, true delight"
         }
-
         // updating pizza
         const res = await request("localhost:5000/api/pizzas").post("/getpizzabyid").send(updateData)
         expect(res.statusCode).toEqual(200)
-
-
-
     });
 })
 
-// deleting pizza
+describe('Delete pizza', () => {
+    afterEach(async () => {
+        // clearing the test pizza from database after every test
+        await knex('pizzas').where('name', pizza.name).del();
+        async () => {
+            await server.close();
+        }
+    })
+    jest.setTimeout(10000);
+    it('returns status code 200 when pizza is deleted', async () => {
+        const res = await request("localhost:5000/api/pizzas").post('/addPizza').send(pizza)
+        // console.log('response pizza', res.body[0])
+        // const delResponse = await knex('pizzas').where('id', res.body[0].id).del();
+        const delResponse = await request('localhost:5000/api/pizzas').post('/deletepizza').send({ pizzaId: res.body[0].id })
+        expect(delResponse.statusCode).toEqual(200)
+    });
 
+})

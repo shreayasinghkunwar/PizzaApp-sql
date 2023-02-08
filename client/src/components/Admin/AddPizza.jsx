@@ -7,13 +7,13 @@ import Error from "../Error";
 import Success from "../Success";
 
 const AddPizza = () => {
-  const [name, setName] = useState("");
-  const [smallPrice, setSmallPrice] = useState();
-  const [largePrice, setLargePrice] = useState();
-  const [mediumPrice, setMediumPrice] = useState();
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [name, setName] = useState(""); //State to set pizza name
+  const [smallPrice, setSmallPrice] = useState(); //State to set price of small pizza
+  const [largePrice, setLargePrice] = useState(); //State to set price of large pizza
+  const [mediumPrice, setMediumPrice] = useState(); //State to set price of medium pizza
+  const [image, setImage] = useState(""); //State to set image of pizza
+  const [description, setDescription] = useState(""); //State to set description of pizza
+  const [category, setCategory] = useState(""); //State to set category of pizza
 
   const addPizzaState = useSelector((state) => state.addPizzaReducer);
   const { loading, error, success } = addPizzaState;
@@ -21,6 +21,7 @@ const AddPizza = () => {
   const dispatch = useDispatch();
 
   const submitForm = (e) => {
+    // Event handle for submitting form
     e.preventDefault();
     const pizza = {
       name,
