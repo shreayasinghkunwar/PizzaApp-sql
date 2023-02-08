@@ -121,23 +121,9 @@ describe("Update Pizza", () => {
 })
 
 describe('Delete pizza', () => {
-    const pizza = {
-        name: "Chicken Golden Pizza ",
-        price: [
-            {
-                "small": 249,
-                "medium": 349,
-                "large": 599
-            }
-        ],
-        category: "nonveg",
-        image: "/images/chicken_golden_delight.jpg",
-        description:
-            "Double pepper barbecue chicken, golden corn and extra cheese, true delight"
-    }
     afterEach(async () => {
         // clearing the test pizza from database after every test
-        await knex('pizzas').where('name', "Chicken Tikki Pizza").del();
+        await knex('pizzas').where('name', pizza.name).del();
         async () => {
             await server.close();
         }

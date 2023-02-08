@@ -7,7 +7,7 @@ const request = require("supertest");
 const { knex } = require('../config/db/index');
 
 // importing mock user data
-const { user } = require("./mockData");
+const { user, user2 } = require("./mockData");
 
 beforeAll(async () => {
     async () => {
@@ -54,14 +54,10 @@ describe('Register user', () => {
 })
 
 describe('Login User', () => {
-    const user = {
-        name: 'Ratish',
-        email: 'ratish890@gmail.com',
-        password: 'password'
-    }
+
     afterEach(async () => {
         // clearing the test user from database after every test
-        await knex('users').where('email', 'ratish890@gmail.com').del();
+        await knex('users').where('email', user.email).del();
         async () => {
             await server.close(() => {
                 process.exit(1);
@@ -85,12 +81,29 @@ describe('Login User', () => {
 
 describe('Get all users', () => {
 
+
+    afterEach(async () => {
+        // clearing the test pizza from database after every test
+        await knex('users').where('email', user.email).del();
+        await knex('users').where('email', user2.email).del();
+        async () => {
+            await server.close();
+        }
+
+    })
+
+    // inserting mock datas
+    beforeEach(async () => {
+        const res = await request('localhost:5000/api/users').post('/register').send(user)
+        const res2 = await request('localhost:5000/api/users').post('/register').send(user2)
+    })
+
     it('returns statuscode 200', async () => {
-        const res = await request('localhost:5000/api/users').get('/getallusers')
-        expect(res.statusCode).toEqual(200)
+        const response = await request('localhost:5000/api/users').get('/getallusers')
+        expect(response.statusCode).toEqual(200)
     })
     it('returns all users in database', async () => {
-        const res = await request('localhost:5000/api/users').get('/getallusers')
-        expect(res.body.length).toBeGreaterThan(0);
+        const response = await request('localhost:5000/api/users').get('/getallusers')
+        expect(response.body.length).toBeGreaterThan(0);
     })
 })

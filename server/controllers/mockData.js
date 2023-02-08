@@ -28,6 +28,7 @@ exports.order = {
 
 }
 
+//mock data for one pizza
 exports.pizza = {
     name: "Chicken Golden ",
 
@@ -46,7 +47,7 @@ exports.pizza = {
 }
 
 
-
+//mock data for mutiple pizzas
 exports.pizzas = [{
     name: "Chicken Golden ",
 

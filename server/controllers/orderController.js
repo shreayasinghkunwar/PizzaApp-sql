@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { knex } = require('../config/db/index');
 
-
+/**
+ * Controller to place order
+ * 
+ * @param {*} req - request user info and cart items from the body
+ * @param {*} res - response user with suceess or failure message
+ */
 exports.placeOrder = async (req, res) => {
     const { checkoutInfo, user, cartItems } = req.body;
     const User = user[0]
@@ -30,9 +35,6 @@ exports.placeOrder = async (req, res) => {
             })
             .returning("*");
 
-
-
-
         res.status(201).json({
             success: true,
             message: 'Order success',
@@ -46,6 +48,12 @@ exports.placeOrder = async (req, res) => {
     }
 }
 
+/**
+ * Controller to get user's order
+ * 
+ * @param {*} req - request user's information
+ * @param {*} res - response users order
+ */
 exports.getUserOrder = async (req, res) => {
 
     const user = req.body;
@@ -67,6 +75,12 @@ exports.getUserOrder = async (req, res) => {
     }
 }
 
+/**
+ * Contoller to get all user orders -- by admin
+ * 
+ * @param {*} req 
+ * @param {*} res - response with every user orders
+ */
 exports.getAllUserOrders = async (req, res) => {
 
     try {

@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken')
 // Register user
 const USER_TABLE_NAME = "users";
 
+/**
+ * controller to register user
+ * 
+ * @param {*} req - request user information from the body  
+ * @param {*} res - response user by success statuscode by inserting user information in the database
+ */
 exports.registerUser = async (req, res) => {
     const { name, email, password } = req.body
 
@@ -21,8 +27,6 @@ exports.registerUser = async (req, res) => {
             res.status(201).json(insertedUser);
         }
 
-
-
     } catch (error) {
         res.status(400).json({
             success: false,
@@ -31,7 +35,14 @@ exports.registerUser = async (req, res) => {
     }
 }
 
+
 const secret = "test"
+/**
+ * controller for login
+ * 
+ * @param {*} req - request user email and password from the database
+ * @param {*} res - response with success or failure statuscode
+ */
 exports.userLogin = async (req, res) => {
 
     const { email, password } = req.body;
@@ -60,14 +71,18 @@ exports.userLogin = async (req, res) => {
 
     }
 }
-
+/**
+ * contoller to get all users -- by admin
+ * 
+ * @param {*} req 
+ * @param {*} res -response success status code by providing every user data form database
+ */
 exports.getAllUsers = async (req, res) => {
 
     try {
+        //selects every data from user table in the database
         const Users = await knex('users')
             .select(`${USER_TABLE_NAME}.*`)
-
-        // console.log('got', Users);
         res.status(200).send(Users);
     } catch (error) {
         res.status(404).json({ message: error.stack });

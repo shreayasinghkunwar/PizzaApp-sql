@@ -4,8 +4,8 @@ import { addToCart } from "../actions/cartAction";
 import "./css/pizza.css";
 
 const Pizza = ({ pizza }) => {
-  const [varient, setVarient] = useState("small");
-  const [quantity, setQuantity] = useState(1);
+  const [varient, setVarient] = useState("small"); //State to set value of varient as small by default
+  const [quantity, setQuantity] = useState(1); //state to set quantity as 1 by default
   const [show, setshow] = useState(false);
 
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Pizza = ({ pizza }) => {
   const handleShow = () => setshow(true);
   return (
     <>
-      <div class="card" style={{  }}>
+      <div class="card" style={{}}>
         <img
           src={pizza.image}
           class="card-img-top"
@@ -35,6 +35,7 @@ const Pizza = ({ pizza }) => {
               <div class="col-6 ">
                 <h6>Varient</h6>
                 <select onChange={(e) => setVarient(e.target.value)}>
+                  {/* {console.log("Pizza Varents", pizza.varients)} */}
                   {pizza.varients.map((varient) => (
                     <option value={varient}> {varient}</option>
                   ))}
@@ -57,7 +58,11 @@ const Pizza = ({ pizza }) => {
             <div class="col-6">
               <button
                 type="button"
-                style={{ width: "100px", fontSize: "13px", fontWeight: "500" }}
+                style={{
+                  width: "100px",
+                  fontSize: "13px",
+                  fontWeight: "500",
+                }}
                 class="btn btn-warning"
                 onClick={addToCartHandler}
               >
@@ -108,6 +113,12 @@ const Pizza = ({ pizza }) => {
       </div>
     </>
   );
+  // return (
+  //   <>
+  //     {pizza && <h2>Hi</h2>}
+  //     {console.log("Pizza2", pizza)}
+  //   </>
+  // );
 };
 
 export default Pizza;
