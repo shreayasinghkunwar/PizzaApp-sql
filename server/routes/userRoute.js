@@ -14,6 +14,7 @@ const secret = "test"
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
+
         const user = await knex(USER_TABLE_NAME)
             .where({ email, password })
 
@@ -31,6 +32,8 @@ router.post('/login', async (req, res) => {
                 message: 'Login Failed'
             })
         }
+
+
     } catch (error) {
         res.status(404).json({
             message: error

@@ -10,7 +10,7 @@ import { placeOrderReducer, getUserOrdersReducer, allUserOrdersReducer } from '.
 
 const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     getAllPizzaReducer: getAllPizzaReducer,
     registerUserReducer: registerUserReducer,
     loginUserReducer: loginUserReducer,

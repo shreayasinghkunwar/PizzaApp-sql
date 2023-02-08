@@ -12,11 +12,18 @@ export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 export const registerUser = (user) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST })
     try {
-        const res = await axios.post("https://pizza-mania-server.onrender.com/api/users/register", user);
-        dispatch({ type: USER_REGISTER_SUCCESS });
-        alert('Registered Successfully');
-        window.location.href = "/"
-    } catch (error) {
+        if (!user.email || !user.email || !user.password) {
+
+            alert("Please fill all fields.");
+        } else {
+            const res = await axios.post("https://pizza-mania-server.onrender.com/api/users/register", user);
+            dispatch({ type: USER_REGISTER_SUCCESS });
+            alert('Registered Successfully');
+            window.location.href = "/";
+        }
+    }
+    catch (error) {
+
 
         dispatch({ type: USER_REGISTER_FAIL, payload: error });
         alert('Failed to register');
@@ -27,19 +34,27 @@ export const registerUser = (user) => async (dispatch) => {
 export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST })
     try {
-        console.log("i am action", user)
-        const response = await axios.post('https://pizza-mania-server.onrender.com/api/users/login', user);
-        console.log(response)
-        dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
-        localStorage.setItem('currentUser', JSON.stringify(response.data))
-        console.log('from actiom', response.data);
-        alert('Login Sucess');
-        window.location.href = "/"
+        console.log("i am action", user);
+        if (!user.email || !user.password) {
 
+
+            alert("Please fill all fields.");
+        } else {
+
+
+            const response = await axios.post('https://pizza-mania-server.onrender.com/api/users/login', user);
+            console.log(response)
+            dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data });
+            localStorage.setItem('currentUser', JSON.stringify(response.data))
+            console.log('from actiom', response.data);
+            alert('Login Success');
+            window.location.href = "/"
+        }
 
     } catch (error) {
         dispatch({ type: USER_LOGIN_FAIL, payload: error });
-        alert('Login Failed');
+        console.log('from failed actiom', error);
+        alert(`Login Failed.`);
 
     }
 }

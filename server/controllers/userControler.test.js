@@ -21,7 +21,6 @@ beforeAll(async () => {
 // testing register order
 describe('Register user', () => {
 
-
     afterEach(async () => {
         // clearing the test user from database after every test
 
@@ -51,6 +50,5 @@ describe('Register user', () => {
         expect(res.body[0].updated_at).toBeTruthy()
 
     })
-
 
 })
