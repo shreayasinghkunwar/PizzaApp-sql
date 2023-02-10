@@ -111,7 +111,7 @@ const Topbar = () => {
               <li class="nav-item">
                 <Link to="/cart" class="nav-link">
                   <span>
-                    <i style={{ color: "#ffbc00" }} class="bi bi-cart-fill"></i>
+                    <i data-testid="cart-icon" style={{ color: "#ffbc00" }} class="bi bi-cart-fill"></i>
                   </span>
                   <sup> {cartState.cartItems.length}</sup>
                 </Link>

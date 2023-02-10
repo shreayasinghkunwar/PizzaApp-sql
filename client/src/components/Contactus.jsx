@@ -1,14 +1,20 @@
 import React from "react";
 
+
+//Contact us page 
+// Displaying company's phone number and address
 const Contactus = () => {
   return (
     <>
       <div className="view-container mt-5" >
         <div class="row" style={{ margin: "auto", marginTop: "10rem", width: "80%" }}>
+          {/** Banner of the pizza mania  */}
           <div class="col-4 col-md-4 col-sm-4 col-lg-4">
             <img src={"https://img.restaurantguru.com/r395-Camion-PIZZA-MANIA-advertisement.jpg"}
               style={{ width: "100%", height: "300px", borderRadius: "7rem" }} />
           </div>
+
+          {/** Displaying contact details */}
           <div class="col-8 col-md-8 col-sm-8 col-lg-8 ">
             <table class="table" style={{ width: "80%", margin: "auto", marginTop: "5rem" }}>
               <thead>

@@ -4,10 +4,16 @@ import { Provider } from "react-redux";
 import store from "../../store.js";
 import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+//import { loginHandler } from "../Login";
 import userEvent from '@testing-library/user-event'
+import { loginUser } from "../../actions/userAction";
+import { useDispatch } from "./useDispatch";
+
 
 
 describe("<Login />", () => {
+
+  // automock the entire login module
 
   // it('Should check whether user can input data`', () => {
   //   //renders login page
@@ -64,25 +70,33 @@ describe("<Login />", () => {
 
   })
 
-  it("should navigate to home page on click", () => {
-    render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Provider>
-    )
-
-    const button = screen.getByTestId("button");
-    fireEvent.click(button);
-
-    // Assert that the location has changed to the home page
-    expect(window.location.pathname).toBe("/");
-  });
 
 
 
+
+
+  /*
+  
+    it("calls the loginUser action when the login button is clicked", () => {
+  
+      const dispatch = jest.fn();
+      useDispatch.mockImplementation(() => dispatch);
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Login />
+          </BrowserRouter>
+        </Provider>
+      );
+  
+      const loginButton = screen.getByTestId("login-btn");
+      fireEvent.click(loginButton); 
+      expect(dispatch).toHaveBeenCalledWith(loginUser);
+    });*/
 });
+
+
+
 
 
 

@@ -16,6 +16,8 @@ const Login = () => {
     console.log(user);
     dispatch(loginUser(user));
   };
+
+
   return (
     <>
       <div className="container mt-5 pt-5">
@@ -69,4 +71,5 @@ const Login = () => {
     </>
   );
 };
+//export { loginHandler }
 export default Login;

@@ -24,20 +24,27 @@ function App() {
     <div className="App">
       <div className="App">
         <BrowserRouter>
+          {/* Navbar */}
           <Topbar />
           <Routes>
+            {/* admin dashboard */}
             <Route path="/admin" element={< AdminScreen />} />
+            {/* index page  */}
             <Route path="/" element={< Homescreen />} />
             <Route path="/contactus" element={< Contactus />} />
+            {/* register and login users */}
             <Route path="/register" element={< Register />} />
             <Route path="/login" element={< Login />} />
+            {/* my cart page  */}
             <Route path="/cart" element={< CartScreen />} />
+            {/* checkout page and order page  */}
             <Route path="/checkout" element={< CheckoutScreen />} />
+            <Route path="/orders" element={< OrderScreen />} />
+            {/*Admin panel for managing users and pizza */}
             <Route path="/admin/userlist" element={< AllUsers />} />
             <Route path="/admin/pizzalist" element={< AllPizzas />} />
             <Route path="/admin/addnewpizza" element={< AddPizza />} />
             <Route path="/admin/editpizza/:pizzaId" element={< EditPizza />} />
-            <Route path="/orders" element={< OrderScreen />} />
             <Route path="/admin/orderlist" element={< AllOrder />} />
 
           </Routes>

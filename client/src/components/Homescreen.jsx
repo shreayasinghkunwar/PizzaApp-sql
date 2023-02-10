@@ -10,16 +10,22 @@ import Carousel from "../screens/Carousel";
 
 const Homescreen = () => {
   const dispatch = useDispatch();
+
+  {/** geting  pizzas from getAllPizzaReducers */}
   const pizzaState = useSelector((state) => state.getAllPizzaReducer);
   const { loading, pizzas, error } = pizzaState;
 
+  // calling action to get all the pizzas from reducer
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);
   return (
     <>
+
+      {/** Front page pizza Banner  */}
       <Carousel />
 
+      {/** main Container Displaying Pizzas  */}
       <div class="container">
         <div
           class="row "
@@ -41,6 +47,7 @@ const Homescreen = () => {
             class="col-lg-4 col-4 col-md-4 col-sm-4"
             style={{ textAlign: "center" }}
           >
+            {/** image of plates and spoons */}
             <img
               style={{ width: "70px", height: "70px", borderRadius: "15rem" }}
               src={
@@ -49,6 +56,7 @@ const Homescreen = () => {
               alt=""
             />
           </div>
+          {/* Displaying pizzas*/}
           <div class="col-lg-4 col-4 col-md-4 col-sm-4">
             <div
               id="divider"
@@ -61,6 +69,8 @@ const Homescreen = () => {
             ></div>
           </div>
         </div>
+        {/**If Pizza is loading then display loader   */}
+        {/**If error displaying Pizza  then display error message   */}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -73,8 +83,11 @@ const Homescreen = () => {
             <div style={{ textAlign: "center" }}>
               <h3>Available Pizzas</h3>
             </div>
+
+            {/** cards displaying  available Pizzas */}
             {pizzas.map((pizza) => (
               <div class="col-12 col-md-6 col-lg-4 col-sm-6 mt-4">
+                {/** Pizza component */}
                 <Pizza pizza={pizza} />
               </div>
             ))}

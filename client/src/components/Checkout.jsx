@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
+// checkout component displaying pizza items added to cart 
+// total price of pizzas added
 
 const Checkout = ({ item, sn, addToCart, deleteFromCart }) => {
     return (
@@ -10,6 +12,7 @@ const Checkout = ({ item, sn, addToCart, deleteFromCart }) => {
                     {sn + 1}.&nbsp;{item.name} [{item.varient}]
                 </h6>
                 <h6>
+                    {/* calculating prices by multiplying quantity and pizza price  */}
                     {" "}
                     &nbsp;&nbsp;&nbsp;Price: {item.quantity} X{" "}
                     {item.prices[0][item.varient]} ={" "}

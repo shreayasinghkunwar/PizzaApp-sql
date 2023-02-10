@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartAction";
 import "./css/pizza.css";
 
+
+// component Diplaying a pizza
 const Pizza = ({ pizza }) => {
   const [varient, setVarient] = useState("small"); //State to set value of varient as small by default
   const [quantity, setQuantity] = useState(1); //state to set quantity as 1 by default
-  const [show, setshow] = useState(false);
+  const [show, setshow] = useState(false);// state to set show as false by default
 
   const dispatch = useDispatch();
 
+  // calling cart action 
   const addToCartHandler = () => {
     dispatch(addToCart(pizza, quantity, varient));
   };
@@ -17,8 +20,12 @@ const Pizza = ({ pizza }) => {
   const handleClose = () => setshow(false);
   const handleShow = () => setshow(true);
   return (
+   
     <>
+     {/**  card diplaying Pizza */}
       <div class="card" style={{}}>
+
+        {/** pizza image */}
         <img
           src={pizza.image}
           class="card-img-top"
@@ -28,6 +35,7 @@ const Pizza = ({ pizza }) => {
           alt=""
         />
         <div class="card-body">
+          {/** pizza name and description */}
           <h5 class="card-title">{pizza.name}</h5>
           <hr></hr>
           <p class="card-text">
@@ -35,13 +43,14 @@ const Pizza = ({ pizza }) => {
               <div class="col-6 ">
                 <h6>Varient</h6>
                 <select onChange={(e) => setVarient(e.target.value)}>
-                  {/* {console.log("Pizza Varents", pizza.varients)} */}
+                  {/* diplaying pizza types*/}
                   {pizza.varients.map((varient) => (
                     <option value={varient}> {varient}</option>
                   ))}
                 </select>
               </div>
               <div class="col-6">
+                {/** pizza quantity */}
                 <h6>Quantity</h6>
                 <select onChange={(e) => setQuantity(e.target.value)}>
                   {[...Array(10).keys()].map((v, i) => (
@@ -53,9 +62,12 @@ const Pizza = ({ pizza }) => {
           </p>
           <div class="row">
             <div class="col-6">
+                {/**  displaying pizza prices */}
               Price : Rs {pizza.prices[0][varient] * quantity}{" "}
             </div>
             <div class="col-6">
+
+                {/** Add to cart button */}
               <button
                 type="button"
                 style={{
@@ -73,6 +85,8 @@ const Pizza = ({ pizza }) => {
         </div>
       </div>
 
+
+  {/** pop up to display pizza */}
       <div
         class="modal fade"
         id="exampleModal"
